@@ -221,8 +221,6 @@ class ZabbixAPI(object):
                'auth': self.auth,
                'id': self.id
               }
-        if method == 'maintenance.delete':
-            obj['params'] = [ params ]
         self.debug(logging.DEBUG, "json_obj: " + str(obj))
         return json.dumps(obj)
 
