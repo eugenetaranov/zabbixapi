@@ -270,7 +270,7 @@ class ZabbixAPI(object):
             return False
 
     def do_request(self, json_obj):
-        headers = {'Content-Type': 'application/json-rpc',
+        headers = {'Content-Type': 'application/json',
                    'User-Agent': 'python/zabbix_api'}
 
         if self.httpuser:
