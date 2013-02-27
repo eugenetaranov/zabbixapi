@@ -215,23 +215,15 @@ class ZabbixAPI(object):
         self.logger.log(level, strval)
 
     def json_obj(self, method, params={}):
-        if method == 'maintenance.delete':
-            obj = {'jsonrpc': '2.0',
-                   'method': method,
-                   'params': [ params ],
-                   'auth': self.auth,
-                   'id': self.id
-                   }
-            return json.dumps(obj)
         obj = {'jsonrpc': '2.0',
                'method': method,
                'params': params,
                'auth': self.auth,
                'id': self.id
               }
-
+        if method == 'maintenance.delete':
+            obj['params'] = [ params ]
         self.debug(logging.DEBUG, "json_obj: " + str(obj))
-
         return json.dumps(obj)
 
     def login(self, user='', password='', save=True):
