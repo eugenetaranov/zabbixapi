@@ -29,7 +29,7 @@ def main( action, host ):
             except:
                 raise
                 _exit(1)
-            zapi.maintenance.delete( maintenanceid )
+            zapi.maintenance.delete( [ maintenanceid ] )
         _exit(0)
     except zabbix_api.ZabbixAPIException:
         raise
