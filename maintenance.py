@@ -20,10 +20,10 @@ def main( action, host ):
     hostid = zapi.host.get( {'filter': { 'host': '%s.%s' % (host, domain) }}  )[0]['hostid']
     try:
         if action == 'set':
-            zapi.maintenance.create( { 'name': 'Backup', 'hostids': [ hostid ], 'timeperiods': [ { 'timeperiod_type': 0 } ], 'description': description } )
+            zapi.maintenance.create( { 'name': 'Backup-%s' % host, 'hostids': [ hostid ], 'timeperiods': [ { 'timeperiod_type': 0 } ], 'description': description } )
         elif action == 'unset':
             try:
-                maintenanceid = zapi.maintenance.get( { 'hostids': [ hostid ], 'search': { 'name': [ 'Backup' ]}} )[0]['maintenanceid']
+                maintenanceid = zapi.maintenance.get( { 'hostids': [ hostid ], 'search': { 'name': [ 'Backup-%s' % host ]}} )[0]['maintenanceid']
             except IndexError:
                 _exit(0)
             except:
